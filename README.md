@@ -1,6 +1,7 @@
 # SystemVerilog RAM Verification
 
 ## Overview
+
 This project implements a 256 × 8-bit RAM and a SystemVerilog testbench to verify its basic read and write operations.
 
 The testbench uses an object-oriented structure with separate components for transaction generation, signal driving, monitoring, and result checking.
@@ -27,6 +28,7 @@ The testbench uses an object-oriented structure with separate components for tra
 
 ## Project Structure
 
+```text
 systemverilog-ram-verification/
 ├── rtl/
 │   └── memory.sv
@@ -39,27 +41,37 @@ systemverilog-ram-verification/
     ├── monitor.sv
     ├── scoreboard.sv
     └── tb.sv
+```
 
 ## Test Scenario
+
 The Generator creates five write transactions. Each write is followed by a read from the same address, resulting in ten transactions.
 
 The Scoreboard maintains an expected memory model and checks the read data returned by the DUT.
 
 ## Simulation
+
 The testbench is intended to be compiled using Synopsys VCS.
 
 From the repository root, run:
+
+```bash
 vcs -sverilog +incdir+tb \
     tb/memory_if.sv \
     tb/memory_tb_pkg.sv \
     rtl/memory.sv \
     tb/tb.sv \
     -o simv
+```
 
 Run the simulation:
+
+```bash
 ./simv
+```
 
 ## Tools and Languages
+
 - SystemVerilog
 - Synopsys VCS
 - Object-oriented testbench development
@@ -67,6 +79,7 @@ Run the simulation:
 - Reference-model-based checking
 
 ## Future Improvements
+
 - Add directed tests for boundary addresses.
 - Verify consecutive writes and memory overwrites.
 - Add functional coverage.
